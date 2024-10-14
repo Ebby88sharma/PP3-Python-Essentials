@@ -6,6 +6,9 @@ import curses
 # New Rock-Paper-Scissors Game
 
 # Function to determine the game outcome based on player and computer choices
+import random
+
+# Function to determine the game outcome based on player and computer choices
 def determine_winner(player, computer):
     if player == computer:
         return "It's a draw!"
@@ -18,16 +21,16 @@ def determine_winner(player, computer):
 
 # Function to validate player input
 def get_player_choice():
-    valid_choices = ["rock", "paper", "scissors"]
+    choices = {"r": "rock", "p": "paper", "s": "scissors"}
     while True:
-        player_choice = input("Choose rock, paper, or scissors: ").lower()
-        if player_choice in valid_choices:
-            return player_choice
+        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower()
+        if player_choice in choices:
+            return choices[player_choice]
         else:
-            print("Invalid input. Please choose 'rock', 'paper', or 'scissors'.")
+            print("Invalid input. Please choose 'R', 'P', or 'S'.")
 
-# Main game loop for Rock, Paper, Scissors
-def play_rps():
+# Main game loop
+def play_game():
     print("Welcome to Rock, Paper, Scissors!")
     while True:
         player_choice = get_player_choice()
@@ -39,8 +42,9 @@ def play_rps():
         result = determine_winner(player_choice, computer_choice)
         print(f"Result: {result}\n")
         
-        play_again = input("Do you want to play again? (yes/no): ").lower()
-        if play_again != "yes":
+        # Shortened input for Yes or No
+        play_again = input("Do you want to play again? (Y/N): ").lower()
+        if play_again != "y":
             print("Thanks for playing!")
             break
 
@@ -137,7 +141,7 @@ def main_menu():
     if choice == '1':
         curses.wrapper(play_snake)  # Start Snake game
     elif choice == '2':
-        play_rps()  # Start Rock-Paper-Scissors game
+        play_game()  # Start Rock-Paper-Scissors game
     else:
         print("Invalid choice. Please select 1 or 2.")
 
