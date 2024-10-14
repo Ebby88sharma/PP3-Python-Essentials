@@ -1,15 +1,58 @@
-import curses
-import random
 import os
+import random
+import sys
+import curses
 
-def main(stdscr):
-    # Setup screen
-    try:
-        curses.curs_set(0)  # Hide the cursor
-    except curses.error:
-        pass  # Ignore the error if running in a non-curses compatible environment
+# New Rock-Paper-Scissors Game
 
-    screen_height, screen_width = stdscr.getmaxyx()  # Get screen height and width
+# Function to determine the game outcome based on player and computer choices
+def determine_winner(player, computer):
+    if player == computer:
+        return "It's a draw!"
+    elif (player == "rock" and computer == "scissors") or \
+         (player == "paper" and computer == "rock") or \
+         (player == "scissors" and computer == "paper"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+# Function to validate player input
+def get_player_choice():
+    valid_choices = ["rock", "paper", "scissors"]
+    while True:
+        player_choice = input("Choose rock, paper, or scissors: ").lower()
+        if player_choice in valid_choices:
+            return player_choice
+        else:
+            print("Invalid input. Please choose 'rock', 'paper', or 'scissors'.")
+
+# Main game loop for Rock, Paper, Scissors
+def play_rps():
+    print("Welcome to Rock, Paper, Scissors!")
+    while True:
+        player_choice = get_player_choice()
+        computer_choice = random.choice(["rock", "paper", "scissors"])
+        
+        print(f"\nYou chose: {player_choice}")
+        print(f"Computer chose: {computer_choice}")
+        
+        result = determine_winner(player_choice, computer_choice)
+        print(f"Result: {result}\n")
+        
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != "yes":
+            print("Thanks for playing!")
+            break
+
+
+# Snake Game
+
+# Function to play the Snake game
+def play_snake():
+    # Initial setup for the screen using curses
+    screen = curses.initscr()
+    curses.curs_set(0)  # Hide the cursor
+    screen_height, screen_width = screen.getmaxyx()  # Get screen height and width
     window = curses.newwin(screen_height, screen_width, 0, 0)  # Create a window for the game
     window.keypad(1)  # Enable keypad input
     window.timeout(100)  # Set the timeout for game loop speed
@@ -45,7 +88,6 @@ def main(stdscr):
             snake[0] in snake[1:]
         ):
             curses.endwin()
-            print(f"Game Over! Final Score: {score}")
             quit()
 
         # Calculate the new position of the snake's head
@@ -84,5 +126,23 @@ def main(stdscr):
         # Display the score at the top left
         window.addstr(0, 0, f'Score: {score}')
 
+
+# Main Menu to choose between the games
+def main_menu():
+    print("Welcome! Choose a game to play:")
+    print("1. Snake Game")
+    print("2. Rock-Paper-Scissors")
+    
+    choice = input("Enter the number of your choice: ")
+
+    if choice == '1':
+        curses.wrapper(play_snake)  # Start Snake game
+    elif choice == '2':
+        play_rps()  # Start Rock-Paper-Scissors game
+    else:
+        print("Invalid choice. Please select 1 or 2.")
+
+
+# Start the program with the main menu
 if __name__ == "__main__":
-    curses.wrapper(main)
+    main_menu()
