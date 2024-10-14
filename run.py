@@ -1,15 +1,48 @@
+import os
 import curses
 import random
-import os
+
+# Updated Rock-Paper-Scissors Game
+def determine_winner(player, computer):
+    if player == computer:
+        return "It's a draw!"
+    elif (player == "rock" and computer == "scissors") or \
+         (player == "paper" and computer == "rock") or \
+         (player == "scissors" and computer == "paper"):
+        return "You win!"
+    else:
+        return "Computer wins!"
+
+def get_player_choice():
+    choices = {"r": "rock", "p": "paper", "s": "scissors"}
+    while True:
+        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower()
+        if player_choice in choices:
+            return choices[player_choice]
+        else:
+            print("Invalid input. Please choose 'R', 'P', or 'S'.")
+
+def play_game():
+    print("Welcome to Rock, Paper, Scissors!")
+    while True:
+        player_choice = get_player_choice()
+        computer_choice = random.choice(["rock", "paper", "scissors"])
+        
+        print(f"\nYou chose: {player_choice}")
+        print(f"Computer chose: {computer_choice}")
+        
+        result = determine_winner(player_choice, computer_choice)
+        print(f"Result: {result}\n")
+        
+        # Shortened input for Yes or No
+        play_again = input("Do you want to play again? (Y/N): ").lower()
+        if play_again != "y":
+            print("Thanks for playing!")
+            break
 
 # Snake Game
 def play_snake(screen):
-    # Setup screen
-    try:
-        curses.curs_set(0)  # Hide the cursor
-    except curses.error:
-        pass  # Ignore if running in a non-compatible environment
-
+    curses.curs_set(0)  # Hide the cursor
     screen_height, screen_width = screen.getmaxyx()  # Get screen height and width
     window = curses.newwin(screen_height, screen_width, 0, 0)  # Create a window for the game
     window.keypad(1)  # Enable keypad input
@@ -85,61 +118,24 @@ def play_snake(screen):
         # Display the score at the top left
         window.addstr(0, 0, f'Score: {score}')
 
-
-# Rock-Paper-Scissors Game
-def determine_winner(player, computer):
-    if player == computer:
-        return "It's a draw!"
-    elif (player == "rock" and computer == "scissors") or \
-         (player == "paper" and computer == "rock") or \
-         (player == "scissors" and computer == "paper"):
-        return "You win!"
-    else:
-        return "Computer wins!"
-
-# Function to validate player input
-def get_player_choice():
-    choices = {"r": "rock", "p": "paper", "s": "scissors"}
-    while True:
-        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower()
-        if player_choice in choices:
-            return choices[player_choice]
-        else:
-            print("Invalid input. Please choose 'R', 'P', or 'S'.")
-
-# Main game loop for Rock-Paper-Scissors
-def play_rock_paper_scissors():
-    print("Welcome to Rock, Paper, Scissors!")
-    while True:
-        player_choice = get_player_choice()
-        computer_choice = random.choice(["rock", "paper", "scissors"])
-
-        print(f"\nYou chose: {player_choice}")
-        print(f"Computer chose: {computer_choice}")
-
-        result = determine_winner(player_choice, computer_choice)
-        print(f"Result: {result}\n")
-
-        # Shortened input for Yes or No
-        play_again = input("Do you want to play again? (Y/N): ").lower()
-        if play_again != "y":
-            print("Thanks for playing!")
-            break
-
-
 # Main Menu to choose between the games
 def main_menu():
-    print("Welcome! Choose a game to play:")
-    print("1. Snake Game")
-    print("2. Rock-Paper-Scissors")
-    choice = input("Enter the number of your choice: ")
+    while True:
+        print("Welcome! Choose a game to play:")
+        print("1. Snake Game")
+        print("2. Rock-Paper-Scissors")
+        
+        choice = input("Enter the number of your choice (1 or 2): ")
 
-    if choice == '1':
-        curses.wrapper(play_snake)  # Start Snake game
-    elif choice == '2':
-        play_rock_paper_scissors()  # Start Rock-Paper-Scissors game
-    else:
-        print("Invalid choice. Please select 1 or 2.")
+        if choice == '1':
+            curses.wrapper(play_snake)  # Start Snake game
+            break
+        elif choice == '2':
+            play_game()  # Start Rock-Paper-Scissors game
+            break
+        else:
+            print("Invalid choice. Please select either 1 or 2.")
 
+# Start the program with the main menu
 if __name__ == "__main__":
     main_menu()
