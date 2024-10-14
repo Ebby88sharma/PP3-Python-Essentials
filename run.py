@@ -1,10 +1,14 @@
 import curses
 import random
-import time
+import os
 
 def main(stdscr):
     # Setup screen
-    curses.curs_set(0)  # Hide the cursor
+    try:
+        curses.curs_set(0)  # Hide the cursor
+    except curses.error:
+        pass  # Ignore the error if running in a non-curses compatible environment
+
     screen_height, screen_width = stdscr.getmaxyx()  # Get screen height and width
     window = curses.newwin(screen_height, screen_width, 0, 0)  # Create a window for the game
     window.keypad(1)  # Enable keypad input
