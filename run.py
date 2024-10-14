@@ -131,21 +131,28 @@ def play_snake(screen):
 
 
 # Main Menu to choose between the games
+import os
+
+# Main Menu to choose between the games
 def main_menu():
     print("Welcome! Choose a game to play:")
-    print("1. Snake Game")
-    print("2. Rock-Paper-Scissors")
     
-    choice = input("Enter the number of your choice: ")
-
-    if choice == '1':
-        curses.wrapper(play_snake)  # Start Snake game
-    elif choice == '2':
-        play_game()  # Start Rock-Paper-Scissors game
+    # Check if we are on Heroku (you can set an environment variable HEROKU=true in Heroku)
+    if os.getenv('HEROKU'):
+        print("Heroku environment detected. Only Rock-Paper-Scissors is available.")
+        play_game()
     else:
-        print("Invalid choice. Please select 1 or 2.")
+        print("1. Snake Game")
+        print("2. Rock-Paper-Scissors")
+        choice = input("Enter the number of your choice: ")
 
+        if choice == '1':
+            curses.wrapper(play_snake)  # Start Snake game
+        elif choice == '2':
+            play_game()  # Start Rock-Paper-Scissors game
+        else:
+            print("Invalid choice. Please select 1 or 2.")
 
-# Start the program with the main menu
 if __name__ == "__main__":
     main_menu()
+
