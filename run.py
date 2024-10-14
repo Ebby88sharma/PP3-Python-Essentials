@@ -47,10 +47,9 @@ def play_rps():
 
 # Snake Game
 
-# Function to play the Snake game
-def play_snake():
+# Updated Function to play the Snake game
+def play_snake(screen):
     # Initial setup for the screen using curses
-    screen = curses.initscr()
     curses.curs_set(0)  # Hide the cursor
     screen_height, screen_width = screen.getmaxyx()  # Get screen height and width
     window = curses.newwin(screen_height, screen_width, 0, 0)  # Create a window for the game
