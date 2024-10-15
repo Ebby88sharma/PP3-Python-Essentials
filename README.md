@@ -178,11 +178,11 @@ Rock-Paper-Scissors Game
   **Pep8 is going to be removed in future so testing was performed using pycodestyle run.py**
    **Snake Game Bug out-of-bound**
 
-  1. ![snake-out-of-bound-bug](./assets/images/snake-bug.jpg)
+   ![snake-out-of-bound-bug](./assets/images/snake-bug.jpg)
 
    **r-p-s Bug Invalid input**
 
-  2. ![r-p-s invalid input bug](./assets/images/r-p-s-bug.jpg)
+   ![r-p-s invalid input bug](./assets/images/r-p-s-bug.jpg)
   
 -------------------------------------------
 
