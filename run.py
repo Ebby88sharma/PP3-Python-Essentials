@@ -2,6 +2,41 @@ import curses
 import random
 import os
 
+# Snake Game Instructions
+def snake_instructions():
+    print("\n--- Snake Game Instructions ---")
+    print("1. Use the arrow keys to move the snake.")
+    print("2. Your goal is to eat the food (represented by π) to grow your snake.")
+    print("3. Avoid crashing into the walls or your own tail.")
+    print("4. The game ends when you hit the wall or yourself.")
+    print("5. Press Enter to start the game.\n")  # Updated message
+    input("Press Enter to start the game...")  # Correct prompt to start the game
+
+# Rock-Paper-Scissors Instructions
+def rps_instructions():
+    print("\n--- Rock-Paper-Scissors Instructions ---")
+    print("1. You will be asked to choose between Rock, Paper, or Scissors.")
+    print("2. Type 'R' for Rock, 'P' for Paper, or 'S' for Scissors.")
+    print("3. The computer will randomly select one of the options.")
+    print("4. Rock beats Scissors, Scissors beats Paper, and Paper beats Rock.")
+    print("5. Press Enter to start the game.\n")  # Updated message
+    input("Press Enter to start the game...")  # Correct prompt to start the game
+
+# General Instructions (for both games)
+def general_instructions():
+    print("\n--- Game Instructions ---")
+    print("Choose a game to play:")
+    print("1. Snake Game")
+    print("   - Use the arrow keys to move.")
+    print("   - Avoid walls and your own tail.")
+    print("   - Eat food to grow.")
+    print("2. Rock-Paper-Scissors")
+    print("   - Rock beats Scissors.")
+    print("   - Paper beats Rock.")
+    print("   - Scissors beats Paper.")
+    print("After each game, you'll be asked if you want to play again.")
+    input("Press Enter to go back to the menu...")
+
 # Snake Game
 def play_snake(screen):
     # Setup screen
@@ -102,11 +137,11 @@ def determine_winner(player, computer):
 def get_player_choice():
     choices = {"r": "rock", "p": "paper", "s": "scissors"}
     while True:
-        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower().strip()  # Ensure input is trimmed
+        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower()
         if player_choice in choices:
             return choices[player_choice]
         else:
-            print("Invalid input. Please choose 'R', 'P', or 'S'. Try again!")
+            print("Invalid input. Please choose 'R', 'P', or 'S'.")
 
 # Main game loop for Rock-Paper-Scissors
 def play_rock_paper_scissors():
@@ -128,21 +163,25 @@ def play_rock_paper_scissors():
             break
 
 
-# Main Menu to choose between the games
+# Main Menu to choose between the games and instructions
 def main_menu():
     while True:
-        print("Welcome! Choose a game to play:")
+        print("\n--- Main Menu ---")
         print("1. Snake Game")
         print("2. Rock-Paper-Scissors")
-        
-        choice = input("Enter the number of your choice (1 or 2): ")
+        print("3. Instructions")
+        choice = input("Enter the number of your choice (1, 2, or 3): ")
 
         if choice == '1':
+            snake_instructions()
             curses.wrapper(play_snake)  # Start Snake game
         elif choice == '2':
+            rps_instructions()
             play_rock_paper_scissors()  # Start Rock-Paper-Scissors game
+        elif choice == '3':
+            general_instructions()
         else:
-            print("Invalid choice. Please select either 1 or 2.")  # Notify user of invalid input
+            print("Invalid choice. Please select 1, 2, or 3.")  # Notify user of invalid input
 
         # Ask the user if they want to play again or switch games
         play_again = input("Do you want to play another game? (Y/N): ").lower()
