@@ -19,7 +19,8 @@ Game-Hour: A dynamic gaming hub deployed on Heroku, where you can dive into two 
 4. [Testing](#testing)
 5. [Learning Outcomes](#learning-outcomes)
 6. [Deployment & Local Development](#deployment-local-development)
-7. [Credits](#credits)
+7. [Issues](#issues)
+8. [Credits](#credits)
 
 ------------------------------------------------
 
