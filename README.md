@@ -37,7 +37,7 @@ Game-Hour: A dynamic gaming hub deployed on Heroku, where you can dive into two 
 ### Game Flow
 
 1. **Main Menu**: 
-   - The user selects between **Snake Game** or **Rock-Paper-Scissors** by entering 1 or 2 in the terminal.
+   - The user selects between **Snake Game** or **Rock-Paper-Scissors** or **Instructions** by entering 1 or 2 or 3 in the terminal.
    - Invalid inputs prompt an error message, and the user is asked to re-enter a valid option.
 
 2. **Snake Game**:
@@ -61,14 +61,17 @@ The flow for project, gameHour, is as follows:
 2. Display Main Menu:
    Option 1: Play Snake Game
    Option 2: Play Rock-Paper-Scissors
+   Option 3: Instructions
 3. User selects a game:
    If Option 1: Proceed to Snake Game
    If Option 2: Proceed to Rock-Paper-Scissors
+   If Option 3: Procedd to Instructions
 3. Validate Input:
    If input is invalid, prompt user with an error and ask again.
 4. Game Execution:
    If Snake: Play the Snake game.
    If Rock-Paper-Scissors: Play the Rock-Paper-Scissors game.
+   If Instructions: Read the instructions about games.
 5. End Game:
    Display results or final score.
 6. Ask user if they want to replay or return to 
@@ -81,14 +84,21 @@ The flow for project, gameHour, is as follows:
 1. Main Menu
 The initial screen where the user selects between playing Snake or Rock-Paper-Scissors.
 ![Initial-Screen](./assets/images/1.png)
+
 ![Invalid-Screen](./assets/images/invalid-choice.png)
+
 Rock-Paper-Scissors Game
+
 Snake Game in Action
 2. A snapshot of the Snake Game running with food and snake movements.
+
 ![Snake-Game](./assets/images/snake-1.png)
+
 ![Snake-Game](./assets/images/snake-2.png)
+
 Rock-Paper-Scissors Game
 3. A view of the Rock-Paper-Scissors game showing the user's choice, computer's choice, and the result.
+
 ![R-P-S-screen](./assets/images/r-p-s.png)
 
 
@@ -140,6 +150,21 @@ Rock-Paper-Scissors Game
    - Verified that the game accurately determines the winner, loser, or draw.
    - Tested the "Play Again" functionality with Y/N inputs.
 
+4. **Pep8 Testing**-
+Pep8 is going to be removed in future so testing was performed using pycodestyle run.py
+  1. ![Pep8 Remove](./assets/images/pep8-removed.png)
+
+  2. ![Testing-1](./assets/images/testing%201.png)
+
+  3. ![Testing-2](./assets/images/testing%202.png)
+
+  4. ![Testing-3](./assets/images/testing3.png)
+
+4. **Bugs Find and Resolved**-
+Pep8 is going to be removed in future so testing was performed using pycodestyle run.py
+  1. ![snake-out-of-bound-bug](./assets/images/snake-bug.jpg)
+  2. ![r-p-s invalid bug](./assets/images/r-p-s-bug.jpg)
+  
 -------------------------------------------
 
 ## Learning Outcomes
