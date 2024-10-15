@@ -158,13 +158,15 @@ Rock-Paper-Scissors Game
 4. **Pep8 Testing**-
 
   **Pep8 is going to be removed in future so testing was performed using pycodestyle run.py**
-  1. ![Pep8 Remove](./assets/images/pep8-removed.png)
-
-  2. ![Testing-1](./assets/images/testing%201.png)
-
-  3. ![Testing-2](./assets/images/testing%202.png)
-
-  4. ![Testing-3](./assets/images/testing3.png)
+---------------------------------------------------------------------------------------------
+   ![Pep8 Remove](./assets/images/pep8-removed.png)
+---------------------------------------------------------------------------------------------
+   ![Testing-1](./assets/images/testing%201.png)
+---------------------------------------------------------------------------------------------
+   ![Testing-2](./assets/images/testing%202.png)
+---------------------------------------------------------------------------------------------
+   ![Testing-3](./assets/images/testing3.png)
+---------------------------------------------------------------------------------------------
 
 4. **Bugs Find and Resolved**-
 
