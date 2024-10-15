@@ -106,6 +106,11 @@ Rock-Paper-Scissors Game
 
 ![R-P-S-screen](./assets/images/r-p-s.png)
 
+4. A view of the instruction showing the user's choice about how to play the games.
+
+![R-P-S-screen](./assets/images/instructions.png)
+
+
 
 --------------------------------------------
 
@@ -176,7 +181,7 @@ Rock-Paper-Scissors Game
   1. ![snake-out-of-bound-bug](./assets/images/snake-bug.jpg)
 
    **r-p-s Bug Invalid input**
-   
+
   2. ![r-p-s invalid input bug](./assets/images/r-p-s-bug.jpg)
   
 -------------------------------------------
