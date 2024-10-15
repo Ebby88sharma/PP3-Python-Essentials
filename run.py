@@ -41,13 +41,13 @@ def play_snake(screen):
 
         # Check if snake has hit the border or itself
         if (
-            snake[0][0] in [0, screen_height] or
-            snake[0][1] in [0, screen_width] or
-            snake[0] in snake[1:]
+            snake[0][0] in [0, screen_height - 1] or  # Check top and bottom borders
+            snake[0][1] in [0, screen_width - 1] or  # Check left and right borders
+            snake[0] in snake[1:]  # Check if snake hit itself
         ):
             curses.endwin()
             print(f"Game Over! Final Score: {score}")
-            quit()
+            break
 
         # Calculate the new position of the snake's head
         new_head = [snake[0][0], snake[0][1]]
@@ -70,8 +70,8 @@ def play_snake(screen):
             food = None
             while food is None:
                 new_food = [
-                    random.randint(1, screen_height - 1),
-                    random.randint(1, screen_width - 1)
+                    random.randint(1, screen_height - 2),  # Avoid placing food on borders
+                    random.randint(1, screen_width - 2)
                 ]
                 food = new_food if new_food not in snake else None
             window.addch(food[0], food[1], curses.ACS_PI)  # Display new food
@@ -79,8 +79,9 @@ def play_snake(screen):
             tail = snake.pop()  # Remove the last part of the snake
             window.addch(tail[0], tail[1], ' ')  # Clear the tail
 
-        # Move the snake on the screen
-        window.addch(snake[0][0], snake[0][1], curses.ACS_CKBOARD)  # Display the snake's head
+        # Ensure the snake's head is within bounds before drawing it
+        if 0 < snake[0][0] < screen_height - 1 and 0 < snake[0][1] < screen_width - 1:
+            window.addch(snake[0][0], snake[0][1], curses.ACS_CKBOARD)  # Display the snake's head
 
         # Display the score at the top left
         window.addstr(0, 0, f'Score: {score}')
@@ -138,12 +139,16 @@ def main_menu():
 
         if choice == '1':
             curses.wrapper(play_snake)  # Start Snake game
-            break
         elif choice == '2':
             play_rock_paper_scissors()  # Start Rock-Paper-Scissors game
-            break
         else:
             print("Invalid choice. Please select either 1 or 2.")  # Notify user of invalid input
+
+        # Ask the user if they want to play again or switch games
+        play_again = input("Do you want to play another game? (Y/N): ").lower()
+        if play_again != 'y':
+            print("Thanks for playing! Goodbye!")
+            break
 
 
 # Start the program with the main menu
