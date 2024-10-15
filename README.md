@@ -53,6 +53,7 @@ Game-Hour: A dynamic gaming hub deployed on Heroku, where you can dive into two 
 
 
 ### Flowchart and Screenshots
+
 ## Flowchart
 The flowchart below outlines the logical flow of the Game-Hour application. It shows the decision points and steps involved in selecting and playing one of the two games—Snake or Rock-Paper-Scissors—and how invalid inputs are handled.
 The flow for project, gameHour, is as follows:
@@ -155,7 +156,8 @@ Rock-Paper-Scissors Game
    - Tested the "Play Again" functionality with Y/N inputs.
 
 4. **Pep8 Testing**-
-Pep8 is going to be removed in future so testing was performed using pycodestyle run.py
+
+  **Pep8 is going to be removed in future so testing was performed using pycodestyle run.py**
   1. ![Pep8 Remove](./assets/images/pep8-removed.png)
 
   2. ![Testing-1](./assets/images/testing%201.png)
@@ -165,8 +167,11 @@ Pep8 is going to be removed in future so testing was performed using pycodestyle
   4. ![Testing-3](./assets/images/testing3.png)
 
 4. **Bugs Find and Resolved**-
-Pep8 is going to be removed in future so testing was performed using pycodestyle run.py
+
+  **Pep8 is going to be removed in future so testing was performed using pycodestyle run.py**
+
   1. ![snake-out-of-bound-bug](./assets/images/snake-bug.jpg)
+
   2. ![r-p-s invalid bug](./assets/images/r-p-s-bug.jpg)
   
 -------------------------------------------
