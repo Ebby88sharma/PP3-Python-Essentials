@@ -2,27 +2,27 @@ import curses
 import random
 import os
 
-# Snake Game Instructions
+""" Snake Game Instructions"""
 def snake_instructions():
     print("\n--- Snake Game Instructions ---")
     print("1. Use the arrow keys to move the snake.")
     print("2. Your goal is to eat the food (represented by π) to grow your snake.")
     print("3. Avoid crashing into the walls or your own tail.")
     print("4. The game ends when you hit the wall or yourself.")
-    print("5. Press Enter to start the game.\n")  # Updated message
-    input("Press Enter to start the game...")  # Correct prompt to start the game
+    print("5. Press Enter to start the game.\n") 
+    input("Press Enter to start the game...")
 
-# Rock-Paper-Scissors Instructions
+"""Rock-Paper-Scissors Instructions """
 def rps_instructions():
     print("\n--- Rock-Paper-Scissors Instructions ---")
     print("1. You will be asked to choose between Rock, Paper, or Scissors.")
     print("2. Type 'R' for Rock, 'P' for Paper, or 'S' for Scissors.")
     print("3. The computer will randomly select one of the options.")
     print("4. Rock beats Scissors, Scissors beats Paper, and Paper beats Rock.")
-    print("5. Press Enter to start the game.\n")  # Updated message
-    input("Press Enter to start the game...")  # Correct prompt to start the game
+    print("5. Press Enter to start the game.\n")  
+    input("Press Enter to start the game...")
 
-# General Instructions (for both games)
+"""General Instructions (for both games)"""
 def general_instructions():
     print("\n--- Game Instructions ---")
     print("Choose a game to play:")
@@ -37,54 +37,53 @@ def general_instructions():
     print("After each game, you'll be asked if you want to play again.")
     input("Press Enter to go back to the menu...")
 
-# Snake Game
+""" Snake Game """
 def play_snake(screen):
-    # Setup screen
+    """ Setup screen """
     try:
-        curses.curs_set(0)  # Hide the cursor
+        curses.curs_set(0) 
     except curses.error:
-        pass  # Ignore if running in a non-compatible environment
+        pass 
 
-    screen_height, screen_width = screen.getmaxyx()  # Get screen height and width
-    window = curses.newwin(screen_height, screen_width, 0, 0)  # Create a window for the game
-    window.keypad(1)  # Enable keypad input
-    window.timeout(100)  # Set the timeout for game loop speed
+    screen_height, screen_width = screen.getmaxyx()  
+    window = curses.newwin(screen_height, screen_width, 0, 0) 
+    window.keypad(1) 
+    window.timeout(100)
 
-    # Initial position for snake's head
+    """ Initial position for snake's head"""
     snake_x = screen_width // 4
     snake_y = screen_height // 2
 
-    # Initial snake body
+    """ Initial snake body """
     snake = [
         [snake_y, snake_x],
         [snake_y, snake_x - 1],
         [snake_y, snake_x - 2]
     ]
 
-    # Set initial food position
+    """ initial food position """
     food = [screen_height // 2, screen_width // 2]
-    window.addch(food[0], food[1], curses.ACS_PI)  # Display food with the character pi
+    window.addch(food[0], food[1], curses.ACS_PI)  
 
-    # Set the initial direction of snake movement
+    """ Set the initial direction of snake movement """
     key = curses.KEY_RIGHT
     score = 0
 
-    # Game loop
     while True:
-        next_key = window.getch()  # Get user input
-        key = key if next_key == -1 else next_key  # Use the new direction if a key is pressed
+        next_key = window.getch() 
+        key = key if next_key == -1 else next_key 
 
-        # Check if snake has hit the border or itself
+        """ Check if snake has hit the border or itself """
         if (
-            snake[0][0] in [0, screen_height - 1] or  # Check top and bottom borders
-            snake[0][1] in [0, screen_width - 1] or  # Check left and right borders
-            snake[0] in snake[1:]  # Check if snake hit itself
+            snake[0][0] in [0, screen_height - 1] or  
+            snake[0][1] in [0, screen_width - 1] or 
+            snake[0] in snake[1:] 
         ):
             curses.endwin()
             print(f"Game Over! Final Score: {score}")
             break
 
-        # Calculate the new position of the snake's head
+        """ Calculation for the new position of the snake's head """
         new_head = [snake[0][0], snake[0][1]]
 
         if key == curses.KEY_DOWN:
@@ -96,33 +95,33 @@ def play_snake(screen):
         if key == curses.KEY_RIGHT:
             new_head[1] += 1
 
-        # Insert the new head to the snake
+        """ Insert the new head to the snake """
         snake.insert(0, new_head)
 
-        # Check if snake has eaten the food
+        """ Check if snake has eaten the food """
         if snake[0] == food:
-            score += 1  # Increase score
+            score += 1 
             food = None
             while food is None:
                 new_food = [
-                    random.randint(1, screen_height - 2),  # Avoid placing food on borders
+                    random.randint(1, screen_height - 2),
                     random.randint(1, screen_width - 2)
                 ]
                 food = new_food if new_food not in snake else None
-            window.addch(food[0], food[1], curses.ACS_PI)  # Display new food
+            window.addch(food[0], food[1], curses.ACS_PI)
         else:
-            tail = snake.pop()  # Remove the last part of the snake
-            window.addch(tail[0], tail[1], ' ')  # Clear the tail
+            tail = snake.pop()
+            window.addch(tail[0], tail[1], ' ')
 
-        # Ensure the snake's head is within bounds before drawing it
+        """ Ensure the snake's head is within bounds before drawing it """
         if 0 < snake[0][0] < screen_height - 1 and 0 < snake[0][1] < screen_width - 1:
-            window.addch(snake[0][0], snake[0][1], curses.ACS_CKBOARD)  # Display the snake's head
+            window.addch(snake[0][0], snake[0][1], curses.ACS_CKBOARD) 
 
-        # Display the score at the top left
+        """ Display the score at the top left """
         window.addstr(0, 0, f'Score: {score}')
 
 
-# Rock-Paper-Scissors Game
+""" Rock-Paper-Scissors Game """
 def determine_winner(player, computer):
     if player == computer:
         return "It's a draw!"
@@ -133,7 +132,7 @@ def determine_winner(player, computer):
     else:
         return "Computer wins!"
 
-# Function to validate player input
+""" Function to validate player input """
 def get_player_choice():
     choices = {"r": "rock", "p": "paper", "s": "scissors"}
     while True:
@@ -143,7 +142,7 @@ def get_player_choice():
         else:
             print("Invalid input. Please choose 'R', 'P', or 'S'.")
 
-# Main game loop for Rock-Paper-Scissors
+""" Main game loop for Rock-Paper-Scissors """
 def play_rock_paper_scissors():
     print("Welcome to Rock, Paper, Scissors!")
     while True:
@@ -156,14 +155,13 @@ def play_rock_paper_scissors():
         result = determine_winner(player_choice, computer_choice)
         print(f"Result: {result}\n")
 
-        # Shortened input for Yes or No
         play_again = input("Do you want to play again? (Y/N): ").lower()
         if play_again != "y":
             print("Thanks for playing!")
             break
 
 
-# Main Menu to choose between the games and instructions
+""" Main Menu to choose between the games and instructions """
 def main_menu():
     while True:
         print("\n--- Main Menu ---")
@@ -174,22 +172,22 @@ def main_menu():
 
         if choice == '1':
             snake_instructions()
-            curses.wrapper(play_snake)  # Start Snake game
+            curses.wrapper(play_snake)  
         elif choice == '2':
             rps_instructions()
-            play_rock_paper_scissors()  # Start Rock-Paper-Scissors game
+            play_rock_paper_scissors()
         elif choice == '3':
             general_instructions()
         else:
-            print("Invalid choice. Please select 1, 2, or 3.")  # Notify user of invalid input
+            print("Invalid choice. Please select 1, 2, or 3.")
 
-        # Ask the user if they want to play again or switch games
+        """ Ask the user if they want to play again or switch games """
         play_again = input("Do you want to play another game? (Y/N): ").lower()
         if play_again != 'y':
             print("Thanks for playing! Goodbye!")
             break
 
 
-# Start the program with the main menu
+""" Start the program with the main menu """
 if __name__ == "__main__":
     main_menu()
