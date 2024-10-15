@@ -82,21 +82,25 @@ The flow for project, gameHour, is as follows:
 
 ## Screenshots
 1. Main Menu
+
 The initial screen where the user selects between playing Snake or Rock-Paper-Scissors.
+
 ![Initial-Screen](./assets/images/1.png)
 
 ![Invalid-Screen](./assets/images/invalid-choice.png)
 
 Rock-Paper-Scissors Game
 
-Snake Game in Action
+**Snake Game in Action**
+
 2. A snapshot of the Snake Game running with food and snake movements.
 
 ![Snake-Game](./assets/images/snake-1.png)
 
 ![Snake-Game](./assets/images/snake-2.png)
 
-Rock-Paper-Scissors Game
+**Rock-Paper-Scissors Game**
+
 3. A view of the Rock-Paper-Scissors game showing the user's choice, computer's choice, and the result.
 
 ![R-P-S-screen](./assets/images/r-p-s.png)
