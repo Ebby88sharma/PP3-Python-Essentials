@@ -223,6 +223,13 @@ git clone <https://github.com/Ebby88sharma/PP3-Python-Essentials.git>
 
 3. Run the program: python3 main.py
 
+
+### Issues Faced on Deployement
+
+1. There was some issue during the deployment on heroku, so I discussed it with my mentor 
+Can Sücüllü (contact - cansucullu@gmail.com) and we were not able to resolve. So I just did hit and trial and created the new repo on github and deployed it. It worked finaly. Thats'why the number of commits on Github might be low as the development was already done.
+
+
 ### Credits
 1. Curses Documentation: Official Python Docs for the curses library.
 2. Random Module: Official Python Docs for random number generation.
