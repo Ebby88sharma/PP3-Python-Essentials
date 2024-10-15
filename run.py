@@ -102,11 +102,11 @@ def determine_winner(player, computer):
 def get_player_choice():
     choices = {"r": "rock", "p": "paper", "s": "scissors"}
     while True:
-        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower()
+        player_choice = input("Choose (R)ock, (P)aper, or (S)cissors: ").lower().strip()  # Ensure input is trimmed
         if player_choice in choices:
             return choices[player_choice]
         else:
-            print("Invalid input. Please choose 'R', 'P', or 'S'.")
+            print("Invalid input. Please choose 'R', 'P', or 'S'. Try again!")
 
 # Main game loop for Rock-Paper-Scissors
 def play_rock_paper_scissors():
