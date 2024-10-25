@@ -222,7 +222,7 @@ git clone <https://github.com/Ebby88sharma/PP3-Python-Essentials.git>
 
 2. Install Python: Ensure Python 3.x is installed on your machine.
 
-3. Run the program: python3 main.py
+3. Run the program: python3 run.py
 
 
 ### Issues Faced on Deployement
